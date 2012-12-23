@@ -1,0 +1,33 @@
+#!/bin/sh
+# Author: nextreamlabs.org
+#         Alessandro Molari (molari.alessandro@gmail.com)
+
+yoxos_path="/usr/local/opt/yoxos"
+profiles_name="yoxosprofiles"
+launcher_name="yoxos_launcher"
+exec_name="yoxos"
+
+launcher_path="${yoxos_path}/${launcher_name}"
+exec_path="${launcher_path}/${exec_name}"
+profiles_path="${yoxos_path}/${profiles_name}"
+
+if [[ $1 == "--list" ]]
+then
+    echo `ls "${profiles_path}"`
+elif [[ $1 == "--launcher" ]]
+then
+    echo "Executing: ${exec_path}"
+    $exec_path
+elif [[ -f "${profiles_path}/$1" ]]
+then
+    echo "Executing profile: $1"
+    echo ">>> using exec: ${exec_path}"
+    profile_name="$1"
+    profile_path="${profiles_path}/${profile_name}"
+    $exec_path "$profile_path"
+else
+    echo "Invalid option. Availables are:"
+    echo ">>> --list: list all available profiles"
+    echo ">>> --launcher: execute the yoxos launcher"
+    echo ">>> <prof_name>: launch the profile <prof_name>"
+fi

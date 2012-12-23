@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Eclipse
+Exec=/usr/local/bin/eclipse
+Icon=/usr/local/opt/eclipse/icon.xpm
+Type=Application
+Categories=Application;Development;
+

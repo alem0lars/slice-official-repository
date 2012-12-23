@@ -1,0 +1,127 @@
+# { xft
+Xft.antialias: true
+Xft.rgba:      rgb
+Xft.hinting:   true
+Xft.hintstyle: hintsfull
+# }
+
+# { colors
+# foreground(75%) + background(<10%)
+*foreground: #BFBFBF
+*background: #101010
+
+# black(<10%) + darkgrey(25%)
+*color0:  #101010
+*color8:  #3F3F3F
+
+# darkred + red
+*color1:  #A31444
+*color9:  #E31C5E
+
+# darkgreen + green
+*color2:  #44A314
+*color10: #5EE31C
+
+# darkyellow + yellow
+*color3:  #8BA314
+*color11: #C2E31C
+
+# darkblue + blue
+*color4:  #1444A3
+*color12: #1C5EE3
+
+# darkmagenta + magenta
+*color5:  #A3148B
+*color13: #E31CC2
+
+# darkcyan + cyan
+*color6:  #148BA3
+*color14: #1CC2E3
+
+# lightgrey(50%) + white(75%)
+*color7:  #7F7F7F
+*color15: #BFBFBF
+# }
+
+# { pointer
+Xcursor.theme: pearlgrey
+# }
+
+# { xterm
+XTerm*faceName:          Inconsolata-10
+XTerm*utf8:              2
+XTerm*colorMode:         true
+XTerm*dynamicColors:     true
+XTerm*saveLines:         8192
+XTerm*scrollTtyKeypress: true
+XTerm*scrollTtyOutput:   false
+XTerm*scrollBar:         true
+XTerm*rightScrollBar:    true
+XTerm*jumpScroll:        true
+XTerm*multiScroll:       true
+XTerm*selectToClipboard: true
+XTerm*cursorBlink:       true
+XTerm*bellIsUrgent:      true
+XTerm*toolBar:           false
+# }
+
+# { urxvt
+URxvt*foreground:                     white
+URxvt*scrollBar:                      true
+URxvt*scrollColor:                    #5f5f5f
+URxvt*troughColor:                    #3f3f3f
+URxvt*scrollBar_floating:             false
+URxvt*scrollBar_right:                true
+URxvt*saveLines:                      8192
+URxvt*cursorBlink:                    true
+URxvt*termName:                       rxvt-256color
+URxvt*font:                           xft:Inconsolata-10
+URxvt*boldFont:                       xft:Inconsolata-10
+URxvt*iso14755_52:                    false
+URxvt.urlLauncher:                    chromium-browser
+URxvt.underlineURLs:                  True
+URxvt.perl-ext-common:                default,clipboard,matcher,keyboard-select
+URxvt.matcher.button:                 1
+URxvt.cutchars:                       ()*,<>[]{}|`""''
+URxvt.clipboard.copycmd:  xclip -i -selection clipboard
+URxvt.clipboard.pastecmd: xclip -o -selection clipboard
+# { transparency
+URxvt*inheritPixmap:                  true
+URxvt*tintColor:                      #5f5f5f
+URxvt*shading:                        40
+# }
+# { Keybindings
+URxvt.keysym.Home:                    \033[H
+URxvt.keysym.End:                     \033[F
+URxvt.keysym.S-Up:                    \033[1;2A
+URxvt.keysym.S-Down:                  \033[1;2B
+URxvt.keysym.S-Right:                 \033[1;2C
+URxvt.keysym.S-Left:                  \033[1;2D
+URxvt.keysym.S-Home:                  \033[1;2H
+URxvt.keysym.S-End:                   \033[1;2F
+URxvt.keysym.M-Up:                    \033[1;3A
+URxvt.keysym.M-Down:                  \033[1;3B
+URxvt.keysym.M-Right:                 \033[1;3C
+URxvt.keysym.M-Left:                  \033[1;3D
+URxvt.keysym.M-Page_Up:               \033[5;3~
+URxvt.keysym.M-Page_Down:             \033[6;3~
+URxvt.keysym.M-Home:                  \033[1;3H
+URxvt.keysym.M-End:                   \033[1;3F
+URxvt.keysym.M-S-Up:                  \033[1;4A
+URxvt.keysym.M-S-Down:                \033[1;4B
+URxvt.keysym.M-S-Right:               \033[1;4C
+URxvt.keysym.M-S-Left:                \033[1;4D
+URxvt.keysym.M-S-Home:                \033[1;4H
+URxvt.keysym.M-S-End:                 \033[1;4F
+URxvt.keysym.C-Up:                    \033[1;5A
+URxvt.keysym.C-Down:                  \033[1;5B
+URxvt.keysym.C-Right:                 \033[1;5C
+URxvt.keysym.C-Left:                  \033[1;5D
+URxvt.keysym.M-Escape:                perl:keyboard-select:activate
+URxvt.keysym.M-c:                     perl:clipboard:copy
+URxvt.keysym.M-v:                     perl:clipboard:paste
+URxvt.keysym.M-C-v:                   perl:clipboard:paste_escaped
+URxvt.keysym.M-u:                     perl:url-select:select_next
+# }
+# }
+

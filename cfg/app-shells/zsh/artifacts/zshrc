@@ -1,0 +1,49 @@
+source ~/.zsh/antigen/antigen.zsh
+
+# Set the oh-my-zsh home directory
+ZSH="${HOME}/.antigen/repos/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh.git"
+
+# Load the oh-my-zsh library
+antigen-bundle robbyrussell/oh-my-zsh lib
+
+# Load plugins
+antigen-bundle robbyrussell/oh-my-zsh plugins/ant
+antigen-bundle robbyrussell/oh-my-zsh plugins/battery
+antigen-bundle robbyrussell/oh-my-zsh plugins/bundler
+antigen-bundle robbyrussell/oh-my-zsh plugins/cap
+antigen-bundle robbyrussell/oh-my-zsh plugins/cpanm
+antigen-bundle robbyrussell/oh-my-zsh plugins/extract
+antigen-bundle robbyrussell/oh-my-zsh plugins/gem
+antigen-bundle robbyrussell/oh-my-zsh plugins/git-flow
+antigen-bundle robbyrussell/oh-my-zsh plugins/git
+antigen-bundle robbyrussell/oh-my-zsh plugins/gpg-agent
+antigen-bundle robbyrussell/oh-my-zsh plugins/history-substring-search
+antigen-bundle robbyrussell/oh-my-zsh plugins/jira
+antigen-bundle robbyrussell/oh-my-zsh plugins/mercurial
+antigen-bundle robbyrussell/oh-my-zsh plugins/mvn
+antigen-bundle robbyrussell/oh-my-zsh plugins/node
+antigen-bundle robbyrussell/oh-my-zsh plugins/npm
+antigen-bundle robbyrussell/oh-my-zsh plugins/perl
+antigen-bundle robbyrussell/oh-my-zsh plugins/pip
+antigen-bundle robbyrussell/oh-my-zsh plugins/python
+antigen-bundle robbyrussell/oh-my-zsh plugins/rails3
+antigen-bundle robbyrussell/oh-my-zsh plugins/rake
+antigen-bundle robbyrussell/oh-my-zsh plugins/redis-cli
+antigen-bundle robbyrussell/oh-my-zsh plugins/ruby
+if [[ -s $HOME/.rvm/scripts/rvm ]]; then
+  antigen-bundle robbyrussell/oh-my-zsh plugins/rvm
+fi
+antigen-bundle robbyrussell/oh-my-zsh plugins/ssh-agent
+antigen-bundle robbyrussell/oh-my-zsh plugins/svn
+antigen-bundle robbyrussell/oh-my-zsh plugins/vagrant
+antigen-bundle zsh-users/zsh-syntax-highlighting
+
+# Apply the antigen commands
+antigen-apply
+
+# Apply custom plugins
+for f in ~/.zsh/plugins/*; do source ${f}; done
+
+# Load the theme
+source ~/.zsh/themes/nmlabs
+

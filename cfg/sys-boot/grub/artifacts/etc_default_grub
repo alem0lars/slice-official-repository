@@ -1,0 +1,21 @@
+GRUB_DISTRIBUTOR="Gentoo"
+
+GRUB_DEFAULT=0
+# Boot the default entry this many seconds after the menu is displayed, unless a key is pressed
+GRUB_TIMEOUT=8
+# Menu entries generated for the default linux kernel entries
+GRUB_CMDLINE_LINUX="resume=/dev/sda2"
+# Menu entries generated for the default linux kernel entry, after those listed in 'GRUB_CMDLINE_LINUX'
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash=silent,theme:natural_gentoo console=tty1"
+# Grub modules to be loaded as early as possible
+GRUB_PRELOAD_MODULES="lvm"
+# Enable the generation of recovery mode menu entries
+GRUB_DISABLE_RECOVERY=false
+# Graphic terminal output
+GRUB_TERMINAL_OUTPUT=gfxterm
+# Screen resolution. It should be set to auto, but if it doesn't work set it to your specific screen size (e.g. GRUB_GFXMODE=1440x900@24).
+GRUB_GFXMODE=auto
+# Remember the screen resolution
+GRUB_GFXPAYLOAD_LINUX=keep
+# The grub bootsplash theme
+GRUB_THEME=/boot/grub2/themes/nmlabs/theme.txt

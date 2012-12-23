@@ -1,0 +1,21 @@
+if [[ $- != *i* ]] ; then
+	return
+fi
+
+[[ -f "$HOME/.bash_functions" ]] && source "$HOME/.bash_functions"
+
+# ==> Customizations
+
+# { rvm
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm && PATH=$PATH:$HOME/.rvm/bin
+[[ -s /usr/local/rvm/scripts/rvm ]] && source /usr/local/rvm/scripts/rvm && PATH=$PATH:/usr/local/rvm/bin
+# }
+
+# { tmux
+if [ -z "$TMUX" ]; then
+  TERM=xterm-256color
+else
+  TERM=screen-256color
+fi
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+# }

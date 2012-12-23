@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Eclipse
+Exec=/usr/local/bin/astah
+Icon=/usr/local/opt/astah/astah.ico
+Type=Application
+Categories=Application;Development;
+

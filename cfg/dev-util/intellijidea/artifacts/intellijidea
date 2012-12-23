@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export RUBYOPT=""
+/usr/local/opt/intellijidea/bin/idea.sh
+

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=IntellijIdea
+Comment=IntellijIdea: Java IDE by JetBrains
+Exec=intellijidea
+Icon=
+Terminal=false
+Type=Application
+MimeType=text/*
+Categories=Application;Development;

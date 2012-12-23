@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=RubyMine
+Comment=RubyMine: Ruby IDE by JetBrains
+Exec=mine
+Icon=
+Terminal=false
+Type=Application
+MimeType=text/*
+Categories=Application;Development;

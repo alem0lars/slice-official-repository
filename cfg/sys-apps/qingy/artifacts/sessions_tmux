@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec fbterm-wrapper /etc/splash/natural_gentoo/images/verbose-1440x900.jpg -- tmux new -s tmux_session
