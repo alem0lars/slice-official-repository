@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Yoxos
+Comment=Yoxos: an Eclipse IDE
+Exec=mine
+Icon=
+Terminal=false
+Type=Application
+MimeType=text/*
+Categories=Application;Development;

@@ -1,0 +1,247 @@
+set nocompatible
+
+" { pathogen
+call pathogen#infect()
+call pathogen#helptags()
+" }
+
+" { syntax & indenting & encoding
+filetype plugin indent on
+syntax on
+scriptencoding 	utf-8
+set viewoptions=folds,options,cursor,unix,slash
+set foldenable
+" }
+
+" { formatting
+set nowrap
+set autoindent
+set shiftwidth=2
+set expandtab
+set tabstop=2
+set softtabstop=2
+set pastetoggle=<F12>
+" }
+
+" { printing
+set pdev=pdf
+set pfn=inconsolata
+set printoptions=paper:A4,number:y,duplex:long,portrait:y,syntax:a,wrap:y,left:4pc,right:4pc,top:4pc,bottom:4pc
+" }
+
+" { ui
+set t_Co=256
+set background=dark
+let g:zenburn_high_Contrast=1
+color jellybeans
+set showmode
+set ruler
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+set number
+set showmatch
+set showcmd
+set winminheight=0
+set wildmenu
+set wildmode=list:longest,full
+set ul=128
+:hi CursorLine
+:hi CursorColumn
+set cursorline!
+:nnoremap <Leader>c :set cursorcolumn!<CR>
+:nnoremap <Leader>l :set cursorline!<CR>
+:nnoremap <Leader>cl :set cursorline! cursorcolumn!<CR>
+" set to auto read when a file is changed from the outside
+set autoread
+" INF: always show the statusline
+set laststatus=2
+set statusline=%<%f\ 
+set statusline+=%w%h%m%r
+set statusline+=%{fugitive#statusline()}
+set statusline+=\ [%{&ff}/%Y]
+set statusline+=\ [%{getcwd()}]
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%
+
+set list listchars=tab:»\ ,trail:·,extends:·,precedes:·
+set list
+
+" { gui
+set guioptions-=T
+set guifont=Inconsolata\ 10
+" }
+" }
+
+" { search & replace
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set gdefault
+" }
+
+" { spellchecking
+set nospell
+" }
+
+" { backup & history & saving
+set history=512
+set backup
+set backupdir=$HOME/.vimbackup
+set directory=$HOME/.vimswap
+set viewdir=$HOME/.vimviews
+set undodir=$HOME/.vimundo
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
+silent execute '!mkdir -p $HOME/.vimbackup'
+silent execute '!mkdir -p $HOME/.vimswap'
+silent execute '!mkdir -p $HOME/.vimviews'
+silent execute '!mkdir -p $HOME/.vimundo'
+" }
+
+" { interface
+set mouse=a
+set ttymouse=xterm2
+set virtualedit=onemore
+" }
+
+" { keybindings
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-L> <C-W>l<C-W>_
+map <C-H> <C-W>h<C-W>_
+
+nnoremap Y y$
+
+nmap <leader>f0 :set foldlevel=0<CR>
+nmap <leader>f1 :set foldlevel=1<CR>
+nmap <leader>f2 :set foldlevel=2<CR>
+nmap <leader>f3 :set foldlevel=3<CR>
+nmap <leader>f4 :set foldlevel=4<CR>
+nmap <leader>f5 :set foldlevel=5<CR>
+nmap <leader>f6 :set foldlevel=6<CR>
+nmap <leader>f7 :set foldlevel=7<CR>
+nmap <leader>f8 :set foldlevel=8<CR>
+nmap <leader>f9 :set foldlevel=9<CR>
+
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+map <right> :bn<cr>
+map <left> :bp<cr>
+
+" { fix keycodes
+map ^[[1~ <Home>
+map ^[[4~ <End>
+imap ^[[1~ <Home>
+imap ^[[4~ <End>
+" }
+" { snipmate
+nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
+" }
+" { tagbar
+nmap <C-c>t :TagbarToggle<CR>
+map <C-c>c :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+" }
+" { cscope
+cnoreabbrev <expr> csa ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs add'  : 'csa')
+cnoreabbrev <expr> csf ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs find' : 'csf')
+cnoreabbrev <expr> csk ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs kill' : 'csk')
+cnoreabbrev <expr> csr ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs reset' : 'csr')
+cnoreabbrev <expr> css ((getcmdtype() == ':' && getcmdpos() <= 5)? 'cs show' : 'css')
+cnoreabbrev <expr> csh ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs help' : 'csh')
+" search with results in the current window
+"   CTRL-\ followed by one of the cscope search types above (s,g,c,t,e,f,i,d)
+"   CTRL-T go back to where you were before the search.  
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+" search with results in a new window split horizontally
+"   CTRL-spacebar followed by one of the cscope search types above (s,g,c,t,e,f,i,d)
+nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-@>i :scs find i <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
+" search with results in a new window split vertically
+"   twice CTRL-spacebar followed by one of the cscope search types above (s,g,c,t,e,f,i,d)
+nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-@><C-@>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>	
+" }
+" }
+
+" { shortcuts
+cmap cd. lcd %:p:h
+cmap w!! w !sudo tee % >/dev/null
+" { tabs
+map <leader>tn :tabnew<CR>
+map <leader>te :tabedit
+map <leader>tc :tabclose<CR>
+map <leader>tm :tabmove
+map <leader>tl :tabs<CR>
+" }
+" { nerdtree
+map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+map <leader>e :NERDTreeFind<CR>
+nmap <leader>nt :NERDTreeFind<CR>
+" }
+" { coffeescript
+map <leader>coffeew ::CoffeeCompile watch vert<CR>
+" }
+" }
+
+" { misc
+set backspace=indent,eol,start
+" { completion
+set completeopt=longest,menuone
+set ofu=syntaxcomplete#Complete
+" }
+" { tags
+set tags=./tags;/
+" }
+" { cscope
+if has('cscope')
+  set cscopetag cscopeverbose
+
+  if has('quickfix')
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
+  endif
+
+  command -nargs=0 Cscope cs add ~/.vim/cscope.out ~/.vim
+endif
+" }
+" { command-t
+let g:CommandTSearchPath = '/usr/local/archive'
+" }
+" { nerdtree
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.class\']
+let NERDTreeChDirMode=1
+let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+" }
+" { snipmate
+let g:snips_author = 'Alessandro Molari'
+" }
+" { coffeescript
+au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
+" }
+" { miniBugExpl
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1 
+" }
+" }

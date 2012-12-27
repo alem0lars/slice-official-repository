@@ -1,0 +1,4 @@
+#!/bin/sh
+
+#if [ "${DESKTOP_SESSION}" = "KDE-4" ]; then
+#fi

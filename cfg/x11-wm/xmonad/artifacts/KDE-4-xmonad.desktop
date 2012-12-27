@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=XSession
+Exec=/etc/X11/Sessions/KDE-4-xmonad
+TryExec=/etc/X11/Sessions/KDE-4-xmonad
+Name=KDE with xmonad
+Comment=KDE with xmonad as window manager

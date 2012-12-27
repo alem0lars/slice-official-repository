@@ -1,0 +1,15 @@
+Config { font = "xft:Inconsolata-11"
+       , bgColor      = "#3f3f3f"
+       , fgColor      = "#bfbfbf"
+       , position     = TopW L 95
+       , lowerOnStart = False
+       , commands     = [ Run Network "eth0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
+                        , Run Network "wlan0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
+                        , Run Memory ["-t","Mem: <usedratio>%", "-l", "green", "--normal","orange","--high","red"] 40
+                        , Run Date "%a %b %_d %H:%M" "date" 60
+                        , Run StdinReader
+                        ]
+       , sepChar      = "%"
+       , alignSep     = "}{"
+       , template = " %StdinReader% }{ %memory% <fc=#0033FF>|</fc> %eth0% %wlan0% <fc=#0033FF>|</fc> %date%"
+       }

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+#if [ "${KDEWM}" = "/usr/bin/xmonad" ]; then
+#fi

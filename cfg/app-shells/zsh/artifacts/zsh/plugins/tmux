@@ -1,0 +1,9 @@
+# Change the terminal for TMux
+if [ ! -z "${TMUX}" ]; then
+  TERM=screen-256color
+fi
+
+# Load tmuxinator
+if [[ -s ${HOME}/.tmuxinator/scripts/tmuxinator ]]; then
+  source ${HOME}/.tmuxinator/scripts/tmuxinator
+fi

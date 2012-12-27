@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=CVim
+Comment=Vim Common instance
+Exec=/usr/local/bin/vim
+Icon=
+Terminal=false
+Type=Application
+MimeType=text/*
+Categories=Application;Development;
