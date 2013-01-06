@@ -30,10 +30,12 @@ set printoptions=paper:A4,number:y,duplex:long,portrait:y,syntax:a,wrap:y,left:4
 " }
 
 " { ui
+syntax enable
 set t_Co=256
 set background=dark
-let g:zenburn_high_Contrast=1
-color jellybeans
+let g:solarized_termcolors=256
+colorscheme solarized
+
 set showmode
 set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
