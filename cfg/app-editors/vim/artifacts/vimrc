@@ -1,14 +1,79 @@
 set nocompatible
+filetype off
 
-" { pathogen
-call pathogen#infect()
-call pathogen#helptags()
+" ===> PLUGINS IMPORT
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" { Bundles
+
+" Load Vundle (required)
+Bundle 'gmarik/vundle'
+
+" Utility functions for vim (required by checksyntax_vim)
+Bundle 'tomtom/tlib_vim'
+
+" Comment plugin that also handles embedded filetypes
+Bundle 'tomtom/tcomment_vim'
+
+" Check a file's syntax when saving a file
+Bundle 'tomtom/checksyntax_vim'
+
+" Mark quickfix & location list items with signs
+Bundle 'tomtom/quickfixsigns_vim'
+
+" Finder for files, buffers, mru, etc
+Bundle 'kien/ctrlp.vim'
+
+" Adds to ctrlp the following extensions:
+" * cmdline history
+" * yank history
+" * selector menu
+Bundle 'sgur/ctrlp-extensions.vim'
+
+" Git support
+Bundle 'tpope/vim-fugitive'
+
+" Buffer explorer (as a top-bar)
+Bundle 'fholgado/minibufexpl.vim'
+
+" Tree-view files browser
+Bundle 'scrooloose/nerdtree'
+
+" Autocompletion using <tab>
+Bundle 'ervandew/supertab'
+
+" A requirement for neosnippet
+Bundle 'Shougo/neocomplcache.git'
+
+" Snippets (using neosnippet)
+Bundle 'Shougo/neosnippet.git'
+
+" Snippets collection
+Bundle 'honza/snipmate-snippets'
+
+" Handle parenthesis balancing
+Bundle 'tpope/vim-surround'
+
+" Tags buffer
+Bundle 'majutsushi/tagbar'
+
+" Highlighting all possible choices and allowing you to
+" press one key to jump directly to the target
+Bundle 'Lokaltog/vim-easymotion'
+
+" The solarized color scheme
+Bundle 'altercation/vim-colors-solarized'
+
 " }
+
+" ===> VIM CONFIG
 
 " { syntax & indenting & encoding
 filetype plugin indent on
 syntax on
-scriptencoding 	utf-8
+scriptencoding utf-8
 set viewoptions=folds,options,cursor,unix,slash
 set foldenable
 " }
@@ -23,19 +88,12 @@ set softtabstop=2
 set pastetoggle=<F12>
 " }
 
-" { printing
-set pdev=pdf
-set pfn=inconsolata
-set printoptions=paper:A4,number:y,duplex:long,portrait:y,syntax:a,wrap:y,left:4pc,right:4pc,top:4pc,bottom:4pc
-" }
-
 " { ui
-syntax enable
 set t_Co=256
 set background=dark
 let g:solarized_termcolors=256
+let g:solarized_termtrans=1
 colorscheme solarized
-
 set showmode
 set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
@@ -56,7 +114,7 @@ set cursorline!
 set autoread
 " INF: always show the statusline
 set laststatus=2
-set statusline=%<%f\ 
+set statusline=%<%f\
 set statusline+=%w%h%m%r
 set statusline+=%{fugitive#statusline()}
 set statusline+=\ [%{&ff}/%Y]
@@ -135,9 +193,6 @@ map ^[[4~ <End>
 imap ^[[1~ <Home>
 imap ^[[4~ <End>
 " }
-" { snipmate
-nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
-" }
 " { tagbar
 nmap <C-c>t :TagbarToggle<CR>
 map <C-c>c :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -198,9 +253,6 @@ map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 map <leader>e :NERDTreeFind<CR>
 nmap <leader>nt :NERDTreeFind<CR>
 " }
-" { coffeescript
-map <leader>coffeew ::CoffeeCompile watch vert<CR>
-" }
 " }
 
 " { misc
@@ -223,8 +275,8 @@ if has('cscope')
   command -nargs=0 Cscope cs add ~/.vim/cscope.out ~/.vim
 endif
 " }
-" { command-t
-let g:CommandTSearchPath = '/usr/local/archive'
+" { ctrlp
+let g:ctrlp_extensions = ['cmdline', 'yankring', 'menu']
 " }
 " { nerdtree
 let NERDTreeShowBookmarks=1
@@ -234,16 +286,11 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
 " }
-" { snipmate
-let g:snips_author = 'Alessandro Molari'
-" }
-" { coffeescript
-au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
-" }
-" { miniBugExpl
-let g:miniBufExplMapWindowNavVim = 1 
-let g:miniBufExplMapWindowNavArrows = 1 
-let g:miniBufExplMapCTabSwitchBufs = 1 
-let g:miniBufExplModSelTarget = 1 
+" { miniBufExpl
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
 " }
 " }
+
