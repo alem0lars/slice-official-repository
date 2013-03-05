@@ -1,98 +1,91 @@
 # { xft
-Xft.antialias:              true
-Xft.rgba:                   rgb
-Xft.hinting:                true
-Xft.hintstyle:              hintsfull
+Xft.antialias: true
+Xft.rgba:      rgb
+Xft.hinting:   true
+Xft.hintstyle: hintsfull
 # }
 
 # { colors
+# foreground + background
+*foreground: #ababab
+*background: #1a1a1a
 
-*background: #002b36
-*foreground: #657b83
-!!*fading: 40
-*fadeColor: #002b36
-*cursorColor: #93a1a1
-*pointerColorBackground: #586e75
-*pointerColorForeground: #93a1a1
+# black + darkgrey
+*color0:  #000000
+*color8:  #838383
 
-!! black dark/light
-*color0: #073642
-*color8: #002b36
+# darkred + red
+*color1:  #c26b56
+*color9:  #fc8c72
 
-!! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
+# darkgreen + green
+*color2:  #5c9053
+*color10: #79bb6d
 
-!! green dark/light
-*color2: #859900
-*color10: #586e75
+# darkyellow + yellow
+*color3:  #9b8035
+*color11: #caa747
 
-!! yellow dark/light
-*color3: #b58900
-*color11: #657b83
+# darkblue + blue
+*color4:  #6f84a9
+*color12: #91acdb
 
-!! blue dark/light
-*color4: #268bd2
-*color12: #839496
+# darkmagenta + magenta
+*color5:  #b46d8e
+*color13: #ea8f89
 
-!! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
+# darkcyan + cyan
+*color6:  #2b918c
+*color14: #3bbdb6
 
-!! cyan dark/light
-*color6: #2aa198
-*color14: #93a1a1
-
-!! white dark/light
-*color7: #eee8d5
-*color15: #fdf6e3
-
+# lightgrey + white
+*color7:  #ababab
+*color15: #d6d6d6
 # }
 
 
 # { pointer
-Xcursor.theme: pearlgrey
+Xcursor.theme:                        pearlgrey
 # }
+
 
 # { xterm
 
-XTerm*cursorBlink:       true
-XTerm*cursorUnderline:      false
+XTerm*cursorBlink:                    true
+XTerm*cursorUnderline:                false
 
-XTerm*faceName:          Inconsolata-10
-XTerm*utf8:              2
-XTerm*colorMode:         true
-XTerm*dynamicColors:     true
-XTerm*saveLines:         8192
-XTerm*scrollTtyKeypress: true
-XTerm*scrollTtyOutput:   false
-XTerm*scrollBar:         true
-XTerm*rightScrollBar:    true
-XTerm*jumpScroll:        true
-XTerm*multiScroll:       true
-XTerm*selectToClipboard: true
-XTerm*bellIsUrgent:      true
-XTerm*toolBar:           false
+XTerm*faceName:                       Inconsolata-10
+XTerm*utf8:                           2
+XTerm*colorMode:                      true
+XTerm*dynamicColors:                  true
+XTerm*saveLines:                      8192
+XTerm*scrollTtyKeypress:              true
+XTerm*scrollTtyOutput:                false
+XTerm*scrollBar:                      true
+XTerm*rightScrollBar:                 true
+XTerm*jumpScroll:                     true
+XTerm*multiScroll:                    true
+XTerm*selectToClipboard:              true
+XTerm*bellIsUrgent:                   true
+XTerm*toolBar:                        false
 # }
 
 # { urxvt
 
-URxvt*cursorBlink:          true
-URxvt*cursorUnderline:      false
+URxvt*cursorBlink:                    true
+URxvt*cursorUnderline:                false
 
 URxvt*foreground:                     white
 
 URxvt*scrollBar:                      true
-URxvt*scrollColor:                    #5f5f5f
-URxvt*troughColor:                    #3f3f3f
 
 URxvt*scrollBar_floating:             false
 URxvt*scrollBar_right:                true
 
 URxvt*saveLines:                      8192
 
-URxvt.internalBorder:       3
-URxvt.lineSpace:            0
+URxvt.internalBorder:                 3
+URxvt.lineSpace:                      0
 
 URxvt*termName:                       rxvt-256color
 
@@ -106,8 +99,8 @@ URxvt.perl-ext-common:                default,clipboard,matcher,keyboard-select
 URxvt.matcher.button:                 1
 URxvt.cutchars:                       ()*,<>[]{}|`""''
 
-URxvt.clipboard.copycmd:  xclip -i -selection clipboard
-URxvt.clipboard.pastecmd: xclip -o -selection clipboard
+URxvt.clipboard.copycmd:              xclip -i -selection clipboard
+URxvt.clipboard.pastecmd:             xclip -o -selection clipboard
 
 URxvt.keysym.Home:                    \033[H
 URxvt.keysym.End:                     \033[F

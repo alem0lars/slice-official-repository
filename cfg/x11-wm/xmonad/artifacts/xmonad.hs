@@ -1,21 +1,3 @@
-{-
-Copyright (C) 2012  nextreamlabs.org
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
--}
-
-
 {-# LANGUAGE NoMonomorphismRestriction #-}
 
 
@@ -58,6 +40,7 @@ import XMonad.Layout.WorkspaceDir
 import qualified XMonad.Layout.Magnifier as Mag
 import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
+import XMonad.Layout.OneBig
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -81,38 +64,35 @@ import System.IO
 
 
 -- Colors
-defCurCols = (defSelFgColor, defSelBgColor)
-defVisCols = (defWinFgColor, defWinBgColor)
-defHidCols = (defWinFgColor, defWinAltBgColor)
-defEmpCols = (defWinInactiveFgColor, defWinBgColor)
-defUrgCols = (defSelActiveFgColor, defSelBgColor)
-defLayCols = (defSelFgColor, defSelBgColor)
-defACol = "#007A58"
-defBCol = "#8BA314"
-defCCol = "#66002B"
-defDCol = "#161329"
-defECol = "#A33600"
-defBlack = "#101010"
-defWhite = "#FFFFFF"
-defGrey25 = "#1F1F1F"
-defGrey50 = "#7F7F7F"
-defGrey75 = "#BFBFBF"
--- New Colors!
-defBgColor = "#C6C6C6"
-defViewBgColor = "#E2E2E2"
-defViewFgColor = "#1B1B1B"
-defViewActiveFgColor = "#89003F"
-defViewInactiveFgColor = "#474747"
-defViewNeutralFgColor = "#5A4400"
-defSelBgColor = "#5E5E5E"
-defSelFgColor = "#F1F1F1"
-defSelInactiveFgColor = "#B9B9B9"
-defSelActiveFgColor = "#FF92E4"
-defWinBgColor = "#C6C6C6"
-defWinAltBgColor = "#CFCFCF"
-defWinFgColor = "#000000"
-defWinInactiveFgColor = "#797979" -- should be "#303030"
-defWinActiveFgColor = "#A10079" -- should be "#610049"
+defWhite = "#ffffff"
+defGrey_125 = "#d6d6d6"
+defGrey_100 = "#ababab"
+defGrey_75 = "#838383"
+defGrey_50 = "#5d5d5d"
+defGrey_25 = "#3a3a3a"
+defGrey_0 = "#1a1a1a"
+defRed_100 = "#fc8c72"
+defCyan_100 = "#3bbdb6"
+defCyan_75 = "#2b918c"
+defBlack = "#000000"
+
+defBgColor = defGrey_0
+defFgColor = defGrey_100
+
+defInactiveTextColor = defGrey_75
+defActiveTextColor = defGrey_100
+defUrgentTextColor = defRed_100
+
+defInactiveBorderColor = defGrey_25
+defActiveBorderColor = defGrey_100
+defUrgentBorderColor = defGrey_125
+
+defCurCols = (defBgColor, defCyan_100)
+defVisCols = (defBgColor, defGrey_100)
+defHidCols = (defCyan_75, defBgColor)
+defEmpCols = (defInactiveTextColor, defBgColor)
+defUrgCols = (defUrgentTextColor, defBgColor)
+defLayCols = (defBgColor, defActiveTextColor)
 
 -- Font
 defTerminal = "urxvtc"
@@ -159,7 +139,7 @@ defWsNames = [ "ref"
              , "tmp"
              ]
 defCurW = (" [", "] ")
-defVisW = (" +", "  ")
+defVisW = (" |", "| ")
 defHidW = (" +", "  ")
 defEmpW = ("  ", "  ")
 defUrgW = ("=!", "!=")
@@ -167,7 +147,7 @@ defLayW = (" # ", " # ")
 
 -- Layouts
 defLayoutHook = smartBorders . avoidStruts $
-    workspaceDir "~" $ 
+    workspaceDir "~" $
     mkToggle1 NBFULL $
     mkToggle1 REFLECTX $
     mkToggle1 REFLECTY $
@@ -176,33 +156,37 @@ defLayoutHook = smartBorders . avoidStruts $
     onWorkspace (head defWsLbls) defRefLayouts $ onWorkspace (defWsLbls !! 1) defWflowLayouts $ onWorkspace (defWsLbls !! 2) defWflowenvsLayouts $ onWorkspace (defWsLbls !! 3) defWflowsuppLayouts $ onWorkspace (defWsLbls !! 4) defNotesLayouts $ onWorkspace (defWsLbls !! 5) defElabLayouts $ onWorkspace (defWsLbls !! 6) defSocialLayouts $ onWorkspace (defWsLbls !! 7) defMgmtLayouts $ onWorkspace (defWsLbls !! 8) defTmpLayouts $ defStdLayouts
 defTiled = ResizableTall 1 (2/100) (1/2) []
 defTabbed = tabbed shrinkText defTabbedTheme
-	where
-		defTabbedTheme = defaultTheme { inactiveBorderColor = defGrey25
-                                  , activeBorderColor = defACol
-                                  , activeTextColor = defACol
-                                  , urgentBorderColor = defCCol
-                                  , urgentTextColor = defCCol
-		                              }
+  where
+    defTabbedTheme = defaultTheme { inactiveBorderColor = defInactiveBorderColor
+                                  , activeBorderColor = defActiveBorderColor
+                                  , activeTextColor = defActiveTextColor
+                                  , urgentBorderColor = defUrgentBorderColor
+                                  , urgentTextColor = defUrgentTextColor
+                                  }
+
+-- Layout definitions
 defCross = simpleCross
 defFull = Full
 defAccordion = Accordion
 defGrid = Mag.magnifiercz (11%10) Grid
 defSpiral = Mag.magnifiercz (11%10) $ spiral (1/2)
-defMosaic = mosaic 1.5 [7,5,2]
+defMosaic = mosaic 2 [3, 2] -- mosaic 1.5 [7,5,2]
 defFloat = simpleFloat
 defMstSlvs = windowNavigation (named "MstSlvs" (reflectVert (combineTwo (dragPane Horizontal 0.7 0.3) defGrid defFull)))
 defThreeFocus = windowNavigation (named "ThreeFocus" (combineTwo (TwoPane 0.03 0.45) defFull (combineTwo (Mirror (TwoPane 0.03 0.85)) defFull defFull)))
+defOneBig = OneBig (0.6) (0.74)
+
 -- Layout groups
 defRefLayouts = defTabbed ||| defTiled
-defWflowLayouts = defMosaic ||| defTiled
-defWflowenvsLayouts = defTabbed ||| defAccordion ||| defMosaic ||| defTiled
+defWflowLayouts = defOneBig ||| defTiled
+defWflowenvsLayouts = defTabbed ||| defOneBig ||| defTiled
 defWflowsuppLayouts = defWflowLayouts
 defNotesLayouts = defAccordion ||| defGrid ||| defTiled
-defElabLayouts = defMosaic ||| defTiled
-defSocialLayouts = defGrid ||| defAccordion ||| defMosaic
-defMgmtLayouts = defGrid ||| defTiled ||| defAccordion ||| defCross
-defTmpLayouts = defGrid ||| defMosaic ||| defTabbed ||| defAccordion
-defStdLayouts = defMosaic ||| defSpiral ||| defTabbed ||| defAccordion ||| defGrid ||| defTiled
+defElabLayouts = defOneBig ||| defTiled ||| defTabbed
+defSocialLayouts = defGrid ||| defAccordion ||| defOneBig
+defMgmtLayouts = defGrid ||| defTiled ||| defAccordion
+defTmpLayouts = defGrid ||| defOneBig ||| defTabbed ||| defAccordion
+defStdLayouts = defOneBig ||| defTabbed ||| defAccordion ||| defGrid ||| defTiled
 
  -- Keybindings
 defScratchpadKeymap =
@@ -235,7 +219,7 @@ defStatusBarPP h = defaultPP
   , ppSep = "  "
   , ppWsSep = " "
   , ppTitle = take 0
-  , ppLayout = uncurry dzenColor defLayCols . uncurry wrap defLayW
+  , ppLayout = uncurry dzenColor defLayCols . uncurry wrap defLayW . take 16 . (++ repeat ' ')
   , ppOutput = hPutStrLn h
   }
 defStatusBarCmd screenWidth = "dzen2 -bg '" ++ defBgColor ++ "' -x 0 -y 0 -h 20 -w " ++ (show $ screenWidth * 0.7)
@@ -243,11 +227,11 @@ defStatusBarCmd screenWidth = "dzen2 -bg '" ++ defBgColor ++ "' -x 0 -y 0 -h 20 
 -- XP options
 defXPConfig = defaultXPConfig
   { font = "xft:" ++ defFont
-  , fgColor = defGrey75
-  , bgColor = defBlack
-  , fgHLight = defBlack
-  , bgHLight = defBCol
-  , borderColor = defGrey50
+  , fgColor = defFgColor
+  , bgColor = defBgColor
+  , fgHLight = defGrey_125
+  , bgHLight = defBgColor
+  , borderColor = defFgColor
   , position = Top
   }
 
@@ -298,8 +282,8 @@ main = do
     , terminal = defTerminal
     , workspaces = defWsLbls
     , borderWidth = 2
-    , normalBorderColor = defGrey25
-    , focusedBorderColor = defGrey75
+    , normalBorderColor = defInactiveBorderColor
+    , focusedBorderColor = defActiveBorderColor
     , startupHook = defStartupHook
     , mouseBindings = defMouseBindings
     }

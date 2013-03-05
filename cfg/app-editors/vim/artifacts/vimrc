@@ -1,5 +1,4 @@
 set nocompatible
-filetype off
 
 " ===> PLUGINS IMPORT
 
@@ -63,8 +62,8 @@ Bundle 'majutsushi/tagbar'
 " press one key to jump directly to the target
 Bundle 'Lokaltog/vim-easymotion'
 
-" The solarized color scheme
-Bundle 'altercation/vim-colors-solarized'
+" The color scheme
+Bundle 'nanotech/jellybeans.vim'
 
 " }
 
@@ -90,10 +89,7 @@ set pastetoggle=<F12>
 
 " { ui
 set t_Co=256
-set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-colorscheme solarized
+colorscheme jellybeans
 set showmode
 set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
@@ -104,13 +100,14 @@ set winminheight=0
 set wildmenu
 set wildmode=list:longest,full
 set ul=128
-:hi CursorLine
-:hi CursorColumn
+:hi CursorLine cterm=NONE ctermbg=234 ctermfg=NONE guibg=234 guifg=NONE
+:hi CursorColumn cterm=NONE ctermbg=234 ctermfg=NONE guibg=234 guifg=NONE
 set cursorline!
 :nnoremap <Leader>c :set cursorcolumn!<CR>
 :nnoremap <Leader>l :set cursorline!<CR>
 :nnoremap <Leader>cl :set cursorline! cursorcolumn!<CR>
-" set to auto read when a file is changed from the outside
+
+"set to auto read when a file is changed from the outside
 set autoread
 " INF: always show the statusline
 set laststatus=2
@@ -160,7 +157,6 @@ silent execute '!mkdir -p $HOME/.vimundo'
 " { interface
 set mouse=a
 set ttymouse=xterm2
-set virtualedit=onemore
 " }
 
 " { keybindings
@@ -206,35 +202,35 @@ cnoreabbrev <expr> css ((getcmdtype() == ':' && getcmdpos() <= 5)? 'cs show' : '
 cnoreabbrev <expr> csh ((getcmdtype() == ':' && getcmdpos() <= 4)? 'cs help' : 'csh')
 " search with results in the current window
 "   CTRL-\ followed by one of the cscope search types above (s,g,c,t,e,f,i,d)
-"   CTRL-T go back to where you were before the search.  
+"   CTRL-T go back to where you were before the search.
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " search with results in a new window split horizontally
 "   CTRL-spacebar followed by one of the cscope search types above (s,g,c,t,e,f,i,d)
-nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-@>i :scs find i <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>i :scs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
 " search with results in a new window split vertically
 "   twice CTRL-spacebar followed by one of the cscope search types above (s,g,c,t,e,f,i,d)
-nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-@><C-@>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@><C-@>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 " }
 " }
 
@@ -280,7 +276,7 @@ let g:ctrlp_extensions = ['cmdline', 'yankring', 'menu']
 " }
 " { nerdtree
 let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.class\']
+let NERDTreeIgnore=['\.pyc', '\.bak', '\.bkp', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.class\']
 let NERDTreeChDirMode=1
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1

@@ -1,26 +1,21 @@
 #!/bin/sh
 
-feh --bg-tile ~/.xmonad/resources/images/background.png &
-
 urxvtd &
 
 start-pulseaudio-x11 &
 
 autocutsel -fork
 
-trayer-srg --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 30 --widthtype percent --alpha 0 --transparent true --tint 0xC6C6C6 --height 20 --heighttype pixel &
-
 tinymount &
 
 dropbox &
+
+source /etc/X11/reload_services.sh
 
 parcellite &
 
 nm-applet &
 
-conky -c /etc/conky/conky_1.conf -d
-conky -c /etc/conky/conky_2.conf -d
-conky -c /etc/conky/conky_3.conf -d
 
 if [ -x /usr/bin/gpg-agent ]; then
   eval "$(/usr/bin/gpg-agent --daemon)"
