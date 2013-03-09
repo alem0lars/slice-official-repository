@@ -21,3 +21,6 @@ conky -c /etc/conky/conky_1.conf -d &> /dev/null
 conky -c /etc/conky/conky_2.conf -d &> /dev/null
 conky -c /etc/conky/conky_3.conf -d &> /dev/null
 
+# XMonad
+xmonad --restart
+
