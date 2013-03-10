@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+echo pdftk $1 cat 1-$(( $2 - 1 )) $2-end output $1
+

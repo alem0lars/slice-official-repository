@@ -177,7 +177,7 @@ defThreeFocus = windowNavigation (named "ThreeFocus" (combineTwo (TwoPane 0.03 0
 defOneBig = OneBig (0.6) (0.74)
 
 -- Layout groups
-defRefLayouts = defTabbed ||| defTiled
+defRefLayouts = defTabbed ||| defTiled ||| defOneBig
 defWflowLayouts = defOneBig ||| defTiled
 defWflowenvsLayouts = defTabbed ||| defOneBig ||| defTiled
 defWflowsuppLayouts = defWflowLayouts
