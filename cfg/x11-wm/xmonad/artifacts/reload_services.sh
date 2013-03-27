@@ -24,3 +24,6 @@ conky -c /etc/conky/conky_3.conf -d &> /dev/null
 # XMonad
 xmonad --restart
 
+# XSetRoot -> Setup cursor style
+xsetroot -cursor_name left_ptr
+

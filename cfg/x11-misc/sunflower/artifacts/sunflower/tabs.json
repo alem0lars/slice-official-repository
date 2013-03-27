@@ -1,0 +1,32 @@
+{
+    "left": {
+        "active_tab": 0, 
+        "tabs": [
+            {
+                "class": "FileList", 
+                "path": "/home/alem0lars", 
+                "sort_ascending": true, 
+                "sort_column": 0
+            }
+        ]
+    }, 
+    "right": {
+        "active_tab": 0, 
+        "tabs": [
+            {
+                "class": "FileList", 
+                "path": "/home/alem0lars", 
+                "sort_ascending": true, 
+                "sort_column": 0
+            }
+        ]
+    }, 
+    "sessions": {
+        "current": 0, 
+        "list": [
+            {
+                "name": "Default"
+            }
+        ]
+    }
+}
