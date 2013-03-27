@@ -38,7 +38,7 @@ return_code=$return_code_enabled
 
 # { prompt
 PROMPT='${pwd}» '
-RPS1='➤ $(rvm_string)$(git_string) ${time} ${user}${host} ${return_code}'
+RPS1='» $(rvm_string)$(git_string) ${time} ${user}${host} ${return_code}'
 # }
 
 # { functions
@@ -47,18 +47,18 @@ function rvm_string () {
     if [ -s "$HOME/.rvm/scripts/rvm" ] || [ -s "/usr/local/rvm" ]; then
 
         if [ "${rvm_current}" != "system" ]; then
-            echo "᚜%{$fg[green]%}${rvm_current}%{$reset_color%}᚛"
+            echo "|%{$fg[green]%}${rvm_current}%{$reset_color%}|"
         fi
     fi
 }
 function git_string () {
     if [[ ! -z $(git_prompt_info) ]]; then
-        echo "᚜$(git_prompt_info)$(git_prompt_status)᚛"
+        echo "|$(git_prompt_info)$(git_prompt_status)|"
     fi
 }
 function ssh_string () {
     if [[ -n $SSH_CONNECTION ]]; then
-        echo "᚜%{$fg[red]%}ssh%{$reset_color%}᚛"
+        echo "|%{$fg[red]%}ssh%{$reset_color%}|"
     fi
 }
 # Determine the time since last commit. If branch is clean, use a neutral color, otherwise colors will vary according to time.
