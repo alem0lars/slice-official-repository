@@ -65,6 +65,9 @@ Bundle 'Lokaltog/vim-easymotion'
 " The color scheme
 Bundle 'nanotech/jellybeans.vim'
 
+" Python autocomplete
+Bundle 'davidhalter/jedi-vim'
+
 " }
 
 " ===> VIM CONFIG
@@ -111,7 +114,7 @@ set cursorline!
 set autoread
 " INF: always show the statusline
 set laststatus=2
-set statusline=%<%f\
+set statusline=%<%f
 set statusline+=%w%h%m%r
 set statusline+=%{fugitive#statusline()}
 set statusline+=\ [%{&ff}/%Y]
@@ -252,15 +255,17 @@ nmap <leader>nt :NERDTreeFind<CR>
 " }
 
 " { misc
+
 set backspace=indent,eol,start
-" { completion
+
+" Tags
+set tags=./tags;/
+
+" Completion (Generic)
 set completeopt=longest,menuone
 set ofu=syntaxcomplete#Complete
-" }
-" { tags
-set tags=./tags;/
-" }
-" { cscope
+
+" CScope
 if has('cscope')
   set cscopetag cscopeverbose
 
@@ -270,23 +275,23 @@ if has('cscope')
 
   command -nargs=0 Cscope cs add ~/.vim/cscope.out ~/.vim
 endif
-" }
-" { ctrlp
+
+" CtrlP
 let g:ctrlp_extensions = ['cmdline', 'yankring', 'menu']
-" }
-" { nerdtree
+
+" NerdTree
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\.bak', '\.bkp', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.class\']
 let NERDTreeChDirMode=1
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
-" }
-" { miniBufExpl
+
+" miniBufExpl
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
-" }
+
 " }
 
