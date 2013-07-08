@@ -184,7 +184,7 @@ defWflowsuppLayouts = defWflowLayouts
 defNotesLayouts = defAccordion ||| defGrid ||| defTiled
 defElabLayouts = defOneBig ||| defTiled ||| defTabbed
 defSocialLayouts = defGrid ||| defAccordion ||| defOneBig
-defMgmtLayouts = defGrid ||| defTiled ||| defAccordion
+defMgmtLayouts = defGrid ||| defTiled ||| defAccordion ||| defTabbed
 defTmpLayouts = defGrid ||| defOneBig ||| defTabbed ||| defAccordion
 defStdLayouts = defOneBig ||| defTabbed ||| defAccordion ||| defGrid ||| defTiled
 
