@@ -1,0 +1,9 @@
+[NotebookList]
+Default=
+file:///usr/local/archive/docs/notes/default
+
+[Notebook]
+uri=file:///usr/local/archive/docs/notes/default
+name=default
+interwiki=None
+icon=None

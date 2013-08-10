@@ -124,7 +124,7 @@ defScratchpads =
   , NS "top"  "urxvtc -e htop" (title =? "htop") defSPFloat
   , NS "ghci" "urxvtc -e ghci" (title =? "ghci") defSPFloat
   ]
-  
+
 -- Workspaces
 defWsLbls = zipWith ((++) . show) [1..] (map (defWsLblSep ++) defWsNames)
 defWsLblSep = " "
@@ -222,7 +222,7 @@ defStatusBarPP h = defaultPP
   , ppLayout = uncurry dzenColor defLayCols . uncurry wrap defLayW . take 16 . (++ repeat ' ')
   , ppOutput = hPutStrLn h
   }
-defStatusBarCmd screenWidth = "dzen2 -bg '" ++ defBgColor ++ "' -x 0 -y 0 -h 20 -w " ++ (show $ screenWidth * 0.7)
+defStatusBarCmd screenWidth = "dzen2 -bg '" ++ defBgColor ++ "' -x 0 -y 0 -h 20 -w " ++ (show $ screenWidth * 0.8)
 
 -- XP options
 defXPConfig = defaultXPConfig

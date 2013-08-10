@@ -5,7 +5,7 @@
 echo ">> Killing trayer"
 killall trayer-srg > /dev/null
 echo ">> Starting trayer"
-nohup trayer-srg --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 30 --widthtype percent --alpha 0 --transparent true --tint 0x1a1a1a1a --height 20 --heighttype pixel > /dev/null &
+nohup trayer-srg --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 20 --widthtype percent --alpha 0 --transparent true --tint 0x1a1a1a1a --height 20 --heighttype pixel > /dev/null &
 
 
 # Feh -> Set the background image
