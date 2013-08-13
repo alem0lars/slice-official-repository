@@ -133,7 +133,7 @@ defWsNames = [ "ref"
              , "wflow-envs"
              , "wflow-supp"
              , "notes"
-             , "elab"
+             , "play"
              , "social"
              , "mgmt"
              , "tmp"
@@ -180,7 +180,7 @@ defOneBig = OneBig (0.6) (0.74)
 defRefLayouts = defTabbed ||| defTiled ||| defOneBig
 defWflowLayouts = defOneBig ||| defTiled
 defWflowenvsLayouts = defTabbed ||| defOneBig ||| defTiled
-defWflowsuppLayouts = defWflowLayouts
+defWflowsuppLayouts = defWflowLayouts ||| defTabbed
 defNotesLayouts = defAccordion ||| defGrid ||| defTiled
 defElabLayouts = defOneBig ||| defTiled ||| defTabbed
 defSocialLayouts = defGrid ||| defAccordion ||| defOneBig
