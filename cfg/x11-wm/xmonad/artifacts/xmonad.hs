@@ -42,6 +42,7 @@ import XMonad.Layout.MultiToggle
 import XMonad.Layout.MultiToggle.Instances
 import XMonad.Layout.OneBig
 
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -63,36 +64,51 @@ import XMonad.Util.WindowProperties(getProp32s)
 import System.IO
 
 
--- Colors
-defWhite = "#ffffff"
-defGrey_125 = "#d6d6d6"
-defGrey_100 = "#ababab"
-defGrey_75 = "#838383"
-defGrey_50 = "#5d5d5d"
-defGrey_25 = "#3a3a3a"
-defGrey_0 = "#1a1a1a"
-defRed_100 = "#fc8c72"
+-- Color palette
+defGrey_100 = "#ffffff"
+defGrey_90 = "#e2e2e2"
+defGrey_80 = "#c6c6c6"
+defGrey_70 = "#ababab"
+defGrey_60 = "#919191"
+defGrey_50 = "#777777"
+defGrey_40 = "#5e5e5e"
+defGrey_30 = "#474747"
+defGrey_20 = "#303030"
+defGrey_10 = "#1c1c1c"
+defGrey_0 = "#000000"
+defRed_25 = "#7b0031"
+defRed_37_5 = "#b1004a"
+defRed_50 = "#ea0064"
+defRed_62_5 = "#ff5e89"
 defCyan_100 = "#3bbdb6"
-defCyan_75 = "#2b918c"
-defBlack = "#000000"
+defCyan_75 = "#00cfc0"
+defCyan_62_5 = "#00aa9d"
+defOrange_75 = "#ffa500"
 
-defBgColor = defGrey_0
-defFgColor = defGrey_100
+-- BG colors
+defBgColor = defGrey_10
+defAltBgColor = defGrey_20
+defFgColor = defGrey_70
 
-defInactiveTextColor = defGrey_75
-defActiveTextColor = defGrey_100
-defUrgentTextColor = defRed_100
+-- Text colors
+defInactiveTextColor = defGrey_50
+defTextColor = defGrey_70
+defActiveTextColor = defGrey_90
+defUrgentTextColor = defGrey_100
+defAltTextColor = defGrey_80
 
-defInactiveBorderColor = defGrey_25
-defActiveBorderColor = defGrey_100
-defUrgentBorderColor = defGrey_125
+-- Border colors
+defInactiveBorderColor = defInactiveTextColor
+defActiveBorderColor = defActiveTextColor
+defUrgentBorderColor = defUrgentTextColor
 
-defCurCols = (defBgColor, defCyan_100)
-defVisCols = (defBgColor, defGrey_100)
-defHidCols = (defCyan_75, defBgColor)
+-- text, background
+defCurCols = (defBgColor, defActiveTextColor)
+defVisCols = (defBgColor, defInactiveTextColor)
+defHidCols = (defActiveTextColor, defBgColor)
 defEmpCols = (defInactiveTextColor, defBgColor)
-defUrgCols = (defUrgentTextColor, defBgColor)
-defLayCols = (defBgColor, defActiveTextColor)
+defUrgCols = (defGrey_100, defBgColor)
+defLayCols = (defAltTextColor, defAltBgColor)
 
 -- Font
 defTerminal = "urxvtc"
@@ -222,14 +238,17 @@ defStatusBarPP h = defaultPP
   , ppLayout = uncurry dzenColor defLayCols . uncurry wrap defLayW . take 16 . (++ repeat ' ')
   , ppOutput = hPutStrLn h
   }
-defStatusBarCmd screenWidth = "dzen2 -bg '" ++ defBgColor ++ "' -x 0 -y 0 -h 20 -w " ++ (show $ screenWidth * 0.8)
+-- If dzen is not compiled with xft support (safe default)
+defStatusBarCmd screenWidth = "dzen2 -ta l -bg '" ++ defBgColor ++ "' -x 0 -y 0 -h 20 -w " ++ (show $ screenWidth * 0.7)
+-- Else
+-- defStatusBarCmd screenWidth = "dzen2 -ta l -fn " ++ defFont ++ " -bg '" ++ defBgColor ++ "' -x 0 -y 0 -h 20 -w " ++ (show $ screenWidth * 0.8)
 
 -- XP options
 defXPConfig = defaultXPConfig
   { font = "xft:" ++ defFont
   , fgColor = defFgColor
   , bgColor = defBgColor
-  , fgHLight = defGrey_125
+  , fgHLight = defGrey_100
   , bgHLight = defBgColor
   , borderColor = defFgColor
   , position = Top
@@ -251,8 +270,8 @@ defStartupHook = startupHook defaultConfig >> setWMName "LG3D"
 -- Log hook
 defLogHook h = takeTopFocus >> (dynamicLogWithPP $ defStatusBarPP h)
 
--- Xmonad params
-defXmonadParams = defaultConfig{ layoutHook = Layout (layoutHook defaultConfig) }
+-- Handle event hook
+defHandleEventHook = handleEventHook defaultConfig <+>  docksEventHook <+> ewmhDesktopsEventHook <+> fullscreenEventHook
 
 -- Define the screen size
 --screenWidth :: Int -> IO Double
@@ -273,10 +292,11 @@ main = do
 
   defStatusBarHandle <- spawnPipe (defStatusBarCmd screenWidth)
 
-  xmonad $ withUrgencyHook NoUrgencyHook $ defXmonadParams
+  xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
     { manageHook = defManageHook
     , layoutHook = defLayoutHook
     , logHook = defLogHook defStatusBarHandle
+    , handleEventHook = defHandleEventHook
     , modMask = mod4Mask
     , focusFollowsMouse = True
     , terminal = defTerminal
@@ -288,9 +308,21 @@ main = do
     , mouseBindings = defMouseBindings
     }
     `additionalKeys`
-    [ ((mod4Mask,                               xK_grave), spawn "gmrun")
+    [ ((0,                                      0x1008FFA9), spawn "toggle_touchpad")
+    -- { Volume Control
+    , ((0,                                      0x1008FF13), spawn "volume_up")
+    , ((0,                                      0x1008FF11), spawn "volume_down")
+    , ((0,                                      0x1008FF12), spawn "volume_mute_toggle")
+    -- }
+    -- Suspend
+    , ((0,                                      0x1008FF2F), spawn "upower-suspend")
+    -- Turn the screen off
+    , ((mod4Mask,                               xK_o), spawn "screen_off")
+    -- { Misc Launchers
+    , ((mod4Mask,                               xK_grave), spawn "gmrun")
     , ((mod4Mask                 .|. mod1Mask,  xK_v), spawn "pavucontrol")
     , ((mod4Mask                 .|. mod1Mask,  xK_m), spawn "urxvtc -e ncmpcpp")
+    -- }
     , ((mod4Mask,                               xK_s), SM.submap $ searchEngineMap $ S.promptSearch defXPConfig)
     , ((mod4Mask                 .|. shiftMask, xK_s), SM.submap $ searchEngineMap S.selectSearch)
     , ((mod4Mask,                               xK_Left), withFocused $ snapMove L Nothing)

@@ -1,0 +1,4 @@
+#!/bin/bash
+notify-send -t 900 "Suspend." "The computer is going to sleep."
+sleep 1
+dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend

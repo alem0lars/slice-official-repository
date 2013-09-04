@@ -1,0 +1,4 @@
+#!/bin/bash
+notify-send -t 900 "Screen off." "The screen is turning off."
+sleep 1
+xset dpms force off
