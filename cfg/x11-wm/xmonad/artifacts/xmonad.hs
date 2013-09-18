@@ -239,7 +239,7 @@ defStatusBarPP h = defaultPP
   , ppOutput = hPutStrLn h
   }
 -- If dzen is not compiled with xft support (safe default)
-defStatusBarCmd screenWidth = "dzen2 -ta l -bg '" ++ defBgColor ++ "' -x 0 -y 0 -h 20 -w " ++ (show $ screenWidth * 0.7)
+defStatusBarCmd screenWidth = "dzen2 -ta l -bg '" ++ defBgColor ++ "' -x 0 -y 0 -h 20 -w " ++ (show $ screenWidth * 0.8)
 -- Else
 -- defStatusBarCmd screenWidth = "dzen2 -ta l -fn " ++ defFont ++ " -bg '" ++ defBgColor ++ "' -x 0 -y 0 -h 20 -w " ++ (show $ screenWidth * 0.8)
 
