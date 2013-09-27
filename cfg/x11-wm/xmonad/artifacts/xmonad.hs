@@ -319,8 +319,8 @@ main = do
     -- Turn the screen off
     , ((mod4Mask,                               xK_o), spawn "screen_off")
     -- { Misc Launchers
-    , ((mod4Mask,                               xK_grave), spawn "gmrun")
     , ((mod4Mask                 .|. mod1Mask,  xK_v), spawn "pavucontrol")
+    , ((mod4Mask,                               xK_grave), spawn "gmrun")
     , ((mod4Mask                 .|. mod1Mask,  xK_m), spawn "urxvtc -e ncmpcpp")
     -- }
     , ((mod4Mask,                               xK_s), SM.submap $ searchEngineMap $ S.promptSearch defXPConfig)
