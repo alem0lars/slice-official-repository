@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/env sh
 
 base_cmd="vim --servername CVim"
 
 if [ $# -gt 0 ]; then
-  exec urxvt -e ${base_cmd} --remote-silent $@
+  exec urxvtc -e ${base_cmd} --remote-silent "$@"
 else
-  exec urxvt -e ${base_cmd}
+  exec urxvtc -e ${base_cmd}
 fi
